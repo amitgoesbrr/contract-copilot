@@ -1,0 +1,36 @@
+# ============================================================================
+# AI Contract Reviewer & Negotiation Copilot - Dependencies
+# ============================================================================
+# Python version: 3.10+
+# ============================================================================
+
+# Core
+msgspec
+loguru
+
+# Google ADK and Gemini
+google-genai
+google-adk[a2a]
+
+# API framework
+fastapi
+uvicorn[standard]
+python-multipart
+
+# PDF processing
+pdfplumber
+Pillow
+
+# Database
+sqlalchemy
+aiosqlite
+
+# Utilities
+python-dotenv
+pydantic-core
+httpx
+
+# Observability
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-exporter-otlp

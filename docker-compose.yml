@@ -1,0 +1,122 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: contract-copilot-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-contract_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-contract_password}
+      POSTGRES_DB: ${DB_NAME:-contract_copilot}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${DB_USER:-contract_user} -d ${DB_NAME:-contract_copilot}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - contract-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: contract-copilot-api
+    environment:
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:?GOOGLE_API_KEY is required}
+
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.0-flash-exp}
+
+      # Access code required to use the application (leave empty to disable)
+      ADMIN_ACCESS_CODE: ${ADMIN_ACCESS_CODE:-}
+
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+
+      DATABASE_URL: postgresql://${DB_USER:-contract_user}:${DB_PASSWORD:-contract_password}@db:5432/${DB_NAME:-contract_copilot}
+
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+
+      # CORS allowed origins (comma-separated)
+      # For local development: http://localhost:3000
+      # For production: https://your-domain.com
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:8000}
+
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      LOG_DIR: /app/logs
+
+      # Keep session data after processing (true/false)
+      SESSION_PERSISTENCE: ${SESSION_PERSISTENCE:-true}
+
+      # Hours after which inactive sessions are cleaned up
+      SESSION_CLEANUP_HOURS: ${SESSION_CLEANUP_HOURS:-24}
+
+      # Continue processing even if some agents fail
+      GRACEFUL_DEGRADATION: ${GRACEFUL_DEGRADATION:-true}
+
+      # Enable observability features
+      ENABLE_OBSERVABILITY: ${ENABLE_OBSERVABILITY:-true}
+      ENABLE_TRACING: ${ENABLE_TRACING:-true}
+      ENABLE_METRICS: ${ENABLE_METRICS:-true}
+      TRACE_EXPORT_PATH: /app/logs/traces/
+
+      MAX_FILE_SIZE_MB: ${MAX_FILE_SIZE_MB:-10}
+      ALLOWED_FILE_TYPES: ${ALLOWED_FILE_TYPES:-pdf,txt}
+
+      GEMINI_RETRY_ATTEMPTS: ${GEMINI_RETRY_ATTEMPTS:-5}
+      GEMINI_RETRY_INITIAL_DELAY: ${GEMINI_RETRY_INITIAL_DELAY:-1.0}
+      GEMINI_RETRY_MAX_DELAY: ${GEMINI_RETRY_MAX_DELAY:-60.0}
+
+    volumes:
+      - contract_logs:/app/logs
+      - contract_data:/app/data
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - contract-network
+
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+      args:
+        # API URL for the frontend (must be accessible from the browser)
+        # For local: http://localhost:8000
+        # For production: https://api.your-domain.com
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    container_name: contract-copilot-ui
+    environment:
+      NODE_ENV: production
+    ports:
+      - "${UI_PORT:-3000}:3000"
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - contract-network
+
+volumes:
+  postgres_data:
+    driver: local
+  contract_logs:
+    driver: local
+  contract_data:
+    driver: local
+
+networks:
+  contract-network:
+    driver: bridge

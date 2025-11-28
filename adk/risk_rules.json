@@ -1,0 +1,92 @@
+{
+  "uncapped_liability": {
+    "pattern": "(no cap on liability|unlimited liability|without limit|liability shall not be limited|no limitation on liability)",
+    "severity": "high",
+    "risk_type": "Financial Exposure",
+    "explanation": "Contract contains uncapped financial exposure which could result in unlimited damages"
+  },
+  "automatic_renewal": {
+    "pattern": "(automatic renewal|automatically renew|renew unless terminated|auto-renew|shall renew automatically)",
+    "severity": "medium",
+    "risk_type": "Contract Duration",
+    "explanation": "Contract may auto-renew without explicit consent, potentially locking in unfavorable terms"
+  },
+  "unilateral_termination": {
+    "pattern": "(may terminate at any time|right to terminate without cause|terminate at will|terminate for convenience|terminate without notice)",
+    "severity": "high",
+    "risk_type": "Termination Rights",
+    "explanation": "Counterparty has unilateral termination rights which creates business continuity risk"
+  },
+  "broad_indemnification": {
+    "pattern": "(indemnify.*against all claims|indemnify.*from any and all|hold harmless.*any claims|defend.*all claims)",
+    "severity": "high",
+    "risk_type": "Indemnification",
+    "explanation": "Broad indemnification clause may require defending against claims unrelated to your actions"
+  },
+  "ip_assignment": {
+    "pattern": "(assign all intellectual property|transfer all ip rights|all work product.*property of|ownership of.*work product)",
+    "severity": "high",
+    "risk_type": "Intellectual Property",
+    "explanation": "Clause assigns intellectual property rights which may include pre-existing or independently developed IP"
+  },
+  "non_compete": {
+    "pattern": "(non-compete|shall not compete|agree not to compete|restriction on competition)",
+    "severity": "medium",
+    "risk_type": "Business Restrictions",
+    "explanation": "Non-compete clause may restrict future business opportunities"
+  },
+  "confidentiality_perpetual": {
+    "pattern": "(confidential.*perpetuity|confidential.*indefinitely|confidential.*no time limit|confidential.*forever)",
+    "severity": "medium",
+    "risk_type": "Confidentiality",
+    "explanation": "Perpetual confidentiality obligations may be overly burdensome and difficult to manage"
+  },
+  "venue_restriction": {
+    "pattern": "(exclusive jurisdiction|venue shall be|courts of.*shall have exclusive|submit to jurisdiction)",
+    "severity": "low",
+    "risk_type": "Dispute Resolution",
+    "explanation": "Venue restriction may require litigation in inconvenient or unfavorable jurisdiction"
+  },
+  "waiver_of_jury": {
+    "pattern": "(waive.*jury trial|waiver of jury|no jury trial|without a jury)",
+    "severity": "medium",
+    "risk_type": "Legal Rights",
+    "explanation": "Waiver of jury trial rights may limit legal remedies in disputes"
+  },
+  "liquidated_damages": {
+    "pattern": "(liquidated damages|predetermined damages|fixed damages amount)",
+    "severity": "medium",
+    "risk_type": "Financial Exposure",
+    "explanation": "Liquidated damages clause may result in disproportionate penalties for breach"
+  },
+  "unilateral_modification": {
+    "pattern": "(may modify.*at any time|right to change.*without notice|unilateral right to amend|modify.*sole discretion)",
+    "severity": "high",
+    "risk_type": "Contract Terms",
+    "explanation": "Counterparty can unilaterally modify terms without consent or notice"
+  },
+  "payment_terms_net_immediate": {
+    "pattern": "(payment.*upon receipt|payment.*immediately|due upon invoice|payment.*within.*days of invoice)",
+    "severity": "low",
+    "risk_type": "Payment Terms",
+    "explanation": "Short payment terms may create cash flow challenges"
+  },
+  "force_majeure_limited": {
+    "pattern": "(force majeure.*limited to|force majeure.*only includes|force majeure.*excludes)",
+    "severity": "medium",
+    "risk_type": "Force Majeure",
+    "explanation": "Limited force majeure clause may not cover all unforeseeable events"
+  },
+  "warranty_disclaimer": {
+    "pattern": "(as is|without warranty|no warranties|disclaims all warranties|without any warranty)",
+    "severity": "medium",
+    "risk_type": "Warranties",
+    "explanation": "Broad warranty disclaimer may leave you without recourse for defects or issues"
+  },
+  "consequential_damages_allowed": {
+    "pattern": "(?!.*waive|.*exclude|.*disclaim)(liable for.*consequential damages|liable for.*indirect damages|liable for.*special damages)",
+    "severity": "high",
+    "risk_type": "Financial Exposure",
+    "explanation": "Liability for consequential damages can result in unpredictable and substantial financial exposure"
+  }
+}

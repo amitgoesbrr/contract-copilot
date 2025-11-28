@@ -1,0 +1,137 @@
+{
+  "liability_cap": {
+    "template_id": "liability_cap",
+    "clause_types": ["liability", "indemnification"],
+    "severity": ["high", "medium"],
+    "template": "Provider's total aggregate liability under this Agreement shall not exceed the greater of (i) {amount} or (ii) the total fees paid by Customer to Provider in the {period} immediately preceding the event giving rise to liability.",
+    "variables": ["amount", "period"],
+    "risk_mitigation": "Caps financial exposure to a predictable and reasonable amount",
+    "description": "Standard liability cap clause that limits total exposure"
+  },
+  "liability_cap_simple": {
+    "template_id": "liability_cap_simple",
+    "clause_types": ["liability"],
+    "severity": ["high"],
+    "template": "In no event shall either party's total liability exceed {amount}.",
+    "variables": ["amount"],
+    "risk_mitigation": "Provides simple, clear cap on liability",
+    "description": "Simple liability cap for straightforward agreements"
+  },
+  "mutual_termination": {
+    "template_id": "mutual_termination",
+    "clause_types": ["termination"],
+    "severity": ["high", "medium"],
+    "template": "Either party may terminate this Agreement for convenience upon {notice_period} prior written notice to the other party. In the event of termination, Customer shall pay for all services rendered through the effective date of termination.",
+    "variables": ["notice_period"],
+    "risk_mitigation": "Provides mutual termination rights with reasonable notice period",
+    "description": "Balanced termination clause with notice requirements"
+  },
+  "termination_for_cause": {
+    "template_id": "termination_for_cause",
+    "clause_types": ["termination"],
+    "severity": ["high"],
+    "template": "Either party may terminate this Agreement immediately upon written notice if the other party (i) materially breaches this Agreement and fails to cure such breach within {cure_period} after receiving written notice, or (ii) becomes insolvent or subject to bankruptcy proceedings.",
+    "variables": ["cure_period"],
+    "risk_mitigation": "Limits termination to material breaches with cure period",
+    "description": "Termination for cause with cure rights"
+  },
+  "limited_indemnification": {
+    "template_id": "limited_indemnification",
+    "clause_types": ["indemnification"],
+    "severity": ["high"],
+    "template": "Provider shall indemnify Customer against third-party claims alleging that the Services infringe such third party's intellectual property rights, provided that Customer (i) promptly notifies Provider of the claim, (ii) grants Provider sole control of the defense and settlement, and (iii) reasonably cooperates with Provider. This indemnification shall not apply to claims arising from Customer's modification of the Services or combination with third-party products.",
+    "variables": [],
+    "risk_mitigation": "Limits indemnification scope to IP infringement with reasonable exclusions",
+    "description": "Standard IP indemnification with carve-outs"
+  },
+  "confidentiality_time_limited": {
+    "template_id": "confidentiality_time_limited",
+    "clause_types": ["confidentiality"],
+    "severity": ["medium"],
+    "template": "The receiving party shall maintain the confidentiality of Confidential Information for a period of {duration} from the date of disclosure, except for information that (i) is or becomes publicly available through no breach of this Agreement, (ii) was rightfully known prior to disclosure, (iii) is independently developed, or (iv) is required to be disclosed by law.",
+    "variables": ["duration"],
+    "risk_mitigation": "Limits confidentiality duration and includes standard exceptions",
+    "description": "Time-limited confidentiality with carve-outs"
+  },
+  "auto_renewal_opt_out": {
+    "template_id": "auto_renewal_opt_out",
+    "clause_types": ["termination", "payment terms"],
+    "severity": ["medium"],
+    "template": "This Agreement shall automatically renew for successive {renewal_period} terms unless either party provides written notice of non-renewal at least {notice_period} prior to the end of the then-current term.",
+    "variables": ["renewal_period", "notice_period"],
+    "risk_mitigation": "Provides clear opt-out window for automatic renewal",
+    "description": "Auto-renewal with reasonable notice period for opt-out"
+  },
+  "consequential_damages_waiver": {
+    "template_id": "consequential_damages_waiver",
+    "clause_types": ["liability"],
+    "severity": ["high"],
+    "template": "Except for breaches of confidentiality obligations or indemnification obligations, neither party shall be liable for any indirect, incidental, special, consequential, or punitive damages, including lost profits, loss of data, or business interruption, even if advised of the possibility of such damages.",
+    "variables": [],
+    "risk_mitigation": "Mutual waiver of consequential damages with carve-outs for critical obligations",
+    "description": "Mutual consequential damages waiver"
+  },
+  "ip_ownership_limited": {
+    "template_id": "ip_ownership_limited",
+    "clause_types": ["intellectual property"],
+    "severity": ["high"],
+    "template": "Customer shall own all right, title, and interest in and to any work product specifically created for Customer under this Agreement. Provider retains ownership of all pre-existing intellectual property, tools, methodologies, and any improvements thereto. Provider grants Customer a perpetual, non-exclusive license to use Provider's pre-existing IP solely as incorporated in the deliverables.",
+    "variables": [],
+    "risk_mitigation": "Clarifies IP ownership and protects pre-existing IP",
+    "description": "Balanced IP ownership with license for pre-existing materials"
+  },
+  "non_compete_limited": {
+    "template_id": "non_compete_limited",
+    "clause_types": ["confidentiality", "termination"],
+    "severity": ["medium"],
+    "template": "During the term of this Agreement and for {duration} thereafter, neither party shall directly solicit for employment any employee of the other party who was involved in the performance of this Agreement. This restriction shall not apply to general solicitations not specifically targeted at the other party's employees.",
+    "variables": ["duration"],
+    "risk_mitigation": "Limits non-compete to non-solicitation with reasonable scope",
+    "description": "Limited non-solicitation clause"
+  },
+  "venue_mutual": {
+    "template_id": "venue_mutual",
+    "clause_types": ["governing law"],
+    "severity": ["low", "medium"],
+    "template": "This Agreement shall be governed by the laws of {jurisdiction}, without regard to conflicts of law principles. Any disputes shall be resolved in the state or federal courts located in {venue}, and each party consents to the personal jurisdiction of such courts.",
+    "variables": ["jurisdiction", "venue"],
+    "risk_mitigation": "Specifies clear governing law and venue",
+    "description": "Standard governing law and venue clause"
+  },
+  "payment_terms_net30": {
+    "template_id": "payment_terms_net30",
+    "clause_types": ["payment terms"],
+    "severity": ["low", "medium"],
+    "template": "Customer shall pay all undisputed invoices within {payment_days} days of the invoice date. Late payments shall accrue interest at the rate of {interest_rate} per month or the maximum rate permitted by law, whichever is less.",
+    "variables": ["payment_days", "interest_rate"],
+    "risk_mitigation": "Provides reasonable payment terms with late payment provisions",
+    "description": "Standard payment terms with late fees"
+  },
+  "force_majeure_comprehensive": {
+    "template_id": "force_majeure_comprehensive",
+    "clause_types": ["termination", "liability"],
+    "severity": ["medium"],
+    "template": "Neither party shall be liable for any failure or delay in performance due to events beyond its reasonable control, including acts of God, war, terrorism, pandemic, government restrictions, natural disasters, or failures of third-party infrastructure. The affected party shall promptly notify the other party and use reasonable efforts to mitigate the impact. If the force majeure event continues for more than {suspension_period}, either party may terminate this Agreement without penalty.",
+    "variables": ["suspension_period"],
+    "risk_mitigation": "Provides comprehensive force majeure protection with termination rights",
+    "description": "Comprehensive force majeure clause"
+  },
+  "warranty_limited": {
+    "template_id": "warranty_limited",
+    "clause_types": ["liability"],
+    "severity": ["medium"],
+    "template": "Provider warrants that the Services will be performed in a professional and workmanlike manner consistent with industry standards. Customer's exclusive remedy for breach of this warranty is re-performance of the deficient Services or, if Provider cannot re-perform, a refund of fees paid for the deficient Services. EXCEPT AS EXPRESSLY SET FORTH HEREIN, PROVIDER MAKES NO OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.",
+    "variables": [],
+    "risk_mitigation": "Provides limited warranty with clear remedies and disclaimer",
+    "description": "Limited warranty with remedy and disclaimer"
+  },
+  "data_privacy_compliance": {
+    "template_id": "data_privacy_compliance",
+    "clause_types": ["confidentiality", "liability"],
+    "severity": ["high"],
+    "template": "Each party shall comply with all applicable data protection and privacy laws, including GDPR and CCPA where applicable. Provider shall implement appropriate technical and organizational measures to protect personal data and shall only process personal data in accordance with Customer's documented instructions. Provider shall notify Customer within {notification_period} of any data breach affecting Customer's data.",
+    "variables": ["notification_period"],
+    "risk_mitigation": "Ensures data privacy compliance and breach notification",
+    "description": "Data privacy and security obligations"
+  }
+}
